@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>YPO Kids Choir 2026</title>
+<meta name="description" content="YPO Family New Year 2026: four November Sundays of choir training for members' children, and a performance on 4 December.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: winter-night hero with a five-line music staff, then a single reading column of "movements"; the registration form closes the page. */
+:root {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --ink: #16203a;
+  --muted: #56607a;
+  --line: #dde1ec;
+  --night: #15204a;
+  --night-ink: #f3f1ea;
+  --gold: #c99a2e;
+  --gold-soft: #f6ecd2;
+  --red: #b8323a;
+  --ok: #1f7a4d;
+  --display: "Young Serif", Georgia, "Times New Roman", serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1328; --surface: #161d38; --ink: #eceef6; --muted: #a3abc4; --line: #2a3356;
+    --night: #0a0f22; --night-ink: #f3f1ea; --gold: #e2b852; --gold-soft: #2c2716; --red: #e2656c; --ok: #5cc28d;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1328; --surface: #161d38; --ink: #eceef6; --muted: #a3abc4; --line: #2a3356;
+  --night: #0a0f22; --night-ink: #f3f1ea; --gold: #e2b852; --gold-soft: #2c2716; --red: #e2656c; --ok: #5cc28d;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+img { max-width: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; text-wrap: balance; line-height: 1.15; margin: 0; }
+p { margin: 0; }
+a { color: inherit; }
+.wrap { max-width: 860px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* Hero */
+.hero { background: var(--night); color: var(--night-ink); position: relative; overflow: hidden; }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero .wrap { position: relative; padding-block: 72px 64px; display: grid; gap: 22px; }
+.eyebrow { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; color: var(--gold); }
+.hero h1 { font-size: clamp(40px, 8vw, 76px); max-width: 12ch; }
+.hero .lede { font-size: 19px; max-width: 54ch; color: #d6d9e6; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: 10px 28px; font-size: 15px; color: #d6d9e6; }
+.hero-meta strong { color: var(--night-ink); font-weight: 600; display: block; font-size: 17px; }
+.cta { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: #1a1405; font-weight: 700; text-decoration: none; padding: 14px 22px; border-radius: 999px; width: fit-content; border: 0; font: inherit; font-weight: 700; cursor: pointer; }
+.cta:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.countdown { font-size: 14px; color: #d6d9e6; }
+
+/* Sections */
+section.mv { padding-block: 56px; border-bottom: 1px solid var(--line); }
+section.mv > .wrap { display: grid; gap: 24px; }
+.mv-head { display: grid; gap: 8px; }
+.mv-label { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; color: var(--red); }
+.mv h2 { font-size: clamp(28px, 4.5vw, 40px); }
+.prose { max-width: 62ch; color: var(--muted); }
+
+.goals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.goal { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 8px; align-content: start; }
+.goal .note { font-family: var(--display); font-size: 30px; color: var(--gold); line-height: 1; }
+.goal h3 { font-size: 20px; }
+.goal p { color: var(--muted); font-size: 16px; }
+
+/* Rehearsal timeline */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.timeline li { display: grid; grid-template-columns: 112px 1fr; gap: 18px; padding: 14px 0; border-top: 1px solid var(--line); }
+.timeline li:last-child { border-bottom: 1px solid var(--line); }
+.timeline .date { font-weight: 700; font-variant-numeric: tabular-nums; }
+.timeline .date small { display: block; font-weight: 500; color: var(--muted); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+.timeline .what strong { display: block; }
+.timeline .what span { color: var(--muted); font-size: 16px; }
+.timeline li.show { background: var(--gold-soft); border-radius: 10px; padding-inline: 12px; border-top-color: transparent; }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 15px; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 600; }
+
+.pairs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 28px; }
+.pair { display: grid; gap: 4px; min-width: 0; }
+.pair h3 { font-family: var(--body); font-weight: 700; font-size: 17px; }
+.pair p { color: var(--muted); font-size: 16px; }
+
+.price { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: center; }
+.price .big { font-family: var(--display); font-size: clamp(40px, 7vw, 60px); line-height: 1; }
+.price .big small { display: block; font-family: var(--body); font-size: 14px; color: var(--muted); margin-top: 6px; }
+.price ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.price li { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px dashed var(--line); padding-bottom: 8px; font-size: 16px; }
+.price li span:last-child { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+
+/* Form */
+.form-section { background: var(--surface); }
+form { display: grid; gap: 28px; }
+fieldset { border: 0; padding: 0; margin: 0; display: grid; gap: 14px; min-width: 0; }
+legend { font-family: var(--display); font-size: 22px; padding: 0; margin-bottom: 4px; }
+.row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+label, .lbl { font-weight: 600; font-size: 15px; }
+.hint { font-size: 14px; color: var(--muted); font-weight: 400; }
+input[type=text], input[type=tel], input[type=email], select, textarea {
+  width: 100%; font: inherit; font-size: 16px; color: var(--ink); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px;
+}
+textarea { min-height: 80px; resize: vertical; }
+.child { border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 14px; background: var(--bg); }
+.child-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.child-head strong { font-family: var(--display); font-weight: 400; font-size: 19px; }
+.child input[type=text], .child select, .child textarea { background: var(--surface); }
+.linkbtn { background: none; border: 0; color: var(--red); font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; padding: 4px; }
+.addbtn { justify-self: start; background: none; border: 1px dashed var(--muted); color: var(--ink); border-radius: 999px; padding: 10px 18px; font: inherit; font-weight: 600; cursor: pointer; }
+.check { display: grid; grid-template-columns: 22px 1fr; gap: 10px; align-items: start; font-weight: 500; }
+.check input { width: 20px; height: 20px; margin: 3px 0 0; accent-color: var(--gold); }
+.radios { display: flex; flex-wrap: wrap; gap: 10px; }
+.radios label { display: inline-flex; gap: 8px; align-items: center; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-weight: 500; cursor: pointer; background: var(--bg); }
+.radios input { accent-color: var(--gold); }
+.error { color: var(--red); font-size: 15px; font-weight: 600; }
+.notice { border-radius: 14px; padding: 20px; display: grid; gap: 12px; }
+.notice.ok { background: var(--gold-soft); }
+.notice h3 { font-size: 24px; }
+pre.summary { white-space: pre-wrap; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; font-size: 14px; margin: 0; overflow-x: auto; font-family: ui-monospace, Menlo, Consolas, monospace; }
+.btnrow { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.ghost { background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 12px 20px; font: inherit; font-weight: 600; cursor: pointer; }
+
+/* Organiser panel */
+.admin { display: grid; gap: 14px; }
+.admin-stats { display: flex; flex-wrap: wrap; gap: 24px; font-size: 15px; color: var(--muted); }
+.admin-stats b { display: block; font-size: 28px; color: var(--ink); font-family: var(--display); font-weight: 400; }
+
+footer { padding-block: 32px 48px; font-size: 13px; color: var(--muted); }
+footer p + p { margin-top: 6px; }
+
+@media (max-width: 720px) {
+  .goals, .pairs, .row { grid-template-columns: 1fr; }
+  .price { grid-template-columns: 1fr; gap: 18px; }
+  .timeline li { grid-template-columns: 88px 1fr; gap: 12px; }
+  .hero .wrap { padding-block: 52px 44px; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <canvas id="staff" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="eyebrow">YPO Family New Year 2026</p>
+    <h1>Our kids take the stage</h1>
+    <p class="lede">This New Year our theme is family. For the first time, members' children aged 5–13 train together as the YPO Kids Choir and perform at our New Year party.</p>
+    <div class="hero-meta">
+      <div><strong>4 Sundays in November</strong>Edupark, 9:00–13:00</div>
+      <div><strong>Fri, 4 December</strong>Performance at Highland Park</div>
+      <div><strong>Ages 5–13</strong>Room for about 20 children</div>
+    </div>
+    <a class="cta" href="#register">Register by 4 November</a>
+    <p class="countdown" id="countdown"></p>
+  </div>
+</header>
+
+<main>
+  <section class="mv" id="why">
+    <div class="wrap">
+      <div class="mv-head">
+        <p class="mv-label">Why</p>
+        <h2>Three things we want for our kids</h2>
+      </div>
+      <div class="goals">
+        <div class="goal">
+          <span class="note" aria-hidden="true">♪</span>
+          <h3>A performance to be proud of</h3>
+          <p>Two or three choir songs, plus solo pieces by kids who want to sing or play an instrument.</p>
+        </div>
+        <div class="goal">
+          <span class="note" aria-hidden="true">♫</span>
+          <h3>Friendships across our families</h3>
+          <p>The kids meet every week, work toward one goal and become friends. They are the future YNG base of our chapter.</p>
+        </div>
+        <div class="goal">
+          <span class="note" aria-hidden="true">♬</span>
+          <h3>YPO through their eyes</h3>
+          <p>In a fun, age-appropriate way, they learn what YPO and YNG are and why their parents belong.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mv" id="programme">
+    <div class="wrap">
+      <div class="mv-head">
+        <p class="mv-label">The programme</p>
+        <h2>Four rehearsals, one evening on stage</h2>
+        <p class="prose">Every Sunday at Edupark, 9:00–13:00, led by a professional piano and vocal instructor with an assistant for each age group.</p>
+      </div>
+      <ol class="timeline">
+        <li><div class="date"><small>Rehearsal 1</small>Sun, 8 Nov</div><div class="what"><strong>Kick-off</strong><span>Meet each other, learn the songs, form age groups</span></div></li>
+        <li><div class="date"><small>Rehearsal 2</small>Sun, 15 Nov</div><div class="what"><strong>Choir rehearsal</strong><span>Solo pieces chosen</span></div></li>
+        <li><div class="date"><small>Rehearsal 3</small>Sun, 22 Nov</div><div class="what"><strong>Choir rehearsal + solo showcase</strong><span>Sets the concert running order</span></div></li>
+        <li><div class="date"><small>Rehearsal 4</small>Sun, 29 Nov</div><div class="what"><strong>Dress rehearsal</strong><span>Full run-through of choir and solos</span></div></li>
+        <li class="show"><div class="date"><small>Concert</small>Fri, 4 Dec</div><div class="what"><strong>Performance at the New Year party</strong><span>Highland Park</span></div></li>
+      </ol>
+
+      <h3 style="font-size:22px">A typical Sunday</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Time</th><th>Ages 5–7</th><th>Ages 8–10</th><th>Ages 11–13</th></tr></thead>
+          <tbody>
+            <tr><td>9:00–9:30</td><td>Arrival, warm-up games</td><td>Arrival, warm-up games</td><td>Arrival, warm-up games</td></tr>
+            <tr><td>9:30–11:00</td><td>Choir, with breaks</td><td>Choir</td><td>Choir + section-leader practice</td></tr>
+            <tr><td>11:00–12:00</td><td>Lunch</td><td>Lunch</td><td>Lunch</td></tr>
+            <tr><td>12:00–13:00</td><td>Play, crafts</td><td>Team activity, solo practice</td><td>YPO/YNG circle, MC and stage-crew roles</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pairs">
+        <div class="pair"><h3>The songs</h3><p>One Mongolian song, one English song, and a family song to close the evening. The kids start it and the parents join in.</p></div>
+        <div class="pair"><h3>Solos</h3><p>Open to any child who wants to sing or play. The 22 November showcase keeps total solo time to about 20–25 minutes, so every performer has the room's full attention.</p></div>
+        <div class="pair"><h3>Practice at home</h3><p>After each Sunday we share practice recordings in the parents' group chat. Ten minutes a day at home makes the difference with only four rehearsals.</p></div>
+        <div class="pair"><h3>Older kids lead</h3><p>Ages 11–13 act as section leaders, MCs and stage crew, so they have a real role alongside the younger singers.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mv" id="logistics">
+    <div class="wrap">
+      <div class="mv-head">
+        <p class="mv-label">Logistics and safety</p>
+        <h2>Taken care of, every Sunday</h2>
+      </div>
+      <div class="pairs">
+        <div class="pair"><h3>Transport</h3><p>Two drivers run pick-up and drop-off routes. Seats are limited, so tell us on the form, and we'll match families for carpools too. Car seats for younger children, and rides only with your signed consent.</p></div>
+        <div class="pair"><h3>Lunch</h3><p>Provided every Sunday. Tell us about allergies and dietary needs below.</p></div>
+        <div class="pair"><h3>Supervision</h3><p>A named adult is in charge each Sunday, with the instructor, assistants and host families. Children are signed in on arrival and released only to a parent or approved driver.</p></div>
+        <div class="pair"><h3>Photos and video</h3><p>A professional video journal of the month and the concert, shared only with participating families. Nothing is posted publicly without your consent.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mv" id="cost">
+    <div class="wrap">
+      <div class="mv-head">
+        <p class="mv-label">Cost</p>
+        <h2>One fee covers the whole month</h2>
+      </div>
+      <div class="price">
+        <div class="big">500,000₮<small>per child, all four Sundays</small></div>
+        <ul>
+          <li><span>Choir training: instructor and assistants</span><span>300,000₮</span></li>
+          <li><span>Lunches, activities, materials and video journal</span><span>200,000₮</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="mv" id="ask">
+    <div class="wrap">
+      <div class="mv-head">
+        <p class="mv-label">What we ask of you</p>
+        <h2>Three small commitments</h2>
+      </div>
+      <div class="pairs">
+        <div class="pair"><h3>Register by 4 November</h3><p>The first rehearsal is Sunday, 8 November. We need numbers to plan groups, lunch and transport.</p></div>
+        <div class="pair"><h3>Host one Sunday</h3><p>Two or three families co-host each week, helping with lunch and activities. It's the easiest way to get to know the other families.</p></div>
+        <div class="pair"><h3>Practise at home</h3><p>Ten minutes a day with the recordings.</p></div>
+        <div class="pair"><h3>After 4 December</h3><p>We want this to be season one of a chapter family programme, with more family gatherings in 2027. Older kids are welcome toward YNG as they reach the age.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mv form-section" id="register">
+    <div class="wrap">
+      <div class="mv-head">
+        <p class="mv-label">Registration</p>
+        <h2>Register your children</h2>
+        <p class="prose" id="formIntro">One form per family. Registration closes on Wednesday, 4 November at 23:59.</p>
+      </div>
+
+      <div id="closed" class="notice ok" hidden>
+        <h3>Registration has closed</h3>
+        <p>The deadline was 4 November. If you'd still like to join, please message Saruul directly.</p>
+      </div>
+
+      <form id="regForm" name="choir-registration" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="choir-registration">
+        <p hidden><label>Leave this empty: <input name="bot-field"></label></p>
+        <input type="hidden" name="children" id="hChildren">
+        <input type="hidden" name="child_count" id="hCount">
+        <input type="hidden" name="total_fee" id="hFee">
+        <input type="hidden" name="summary" id="hSummary">
+        <fieldset>
+          <legend>Parent</legend>
+          <div class="row">
+            <div class="field"><label for="parentName">Your name</label><input type="text" id="parentName" name="parent_name" autocomplete="name" required></div>
+            <div class="field"><label for="parentPhone">Phone</label><input type="tel" id="parentPhone" name="phone" autocomplete="tel" required></div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Children</legend>
+          <div id="children" style="display:grid;gap:14px"></div>
+          <button type="button" class="addbtn" id="addChild">+ Add another child</button>
+        </fieldset>
+
+        <fieldset>
+          <legend>Transport</legend>
+          <div class="field">
+            <span class="lbl">Do you need a ride to and from Edupark?</span>
+            <div class="radios" role="radiogroup" aria-label="Transport needed">
+              <label><input type="radio" name="transport" id="transportYes" value="yes"> Yes, please</label>
+              <label><input type="radio" name="transport" id="transportNo" value="no"> No, we'll drive</label>
+              <label><input type="radio" name="transport" id="transportCarpool" value="carpool"> We can carpool others</label>
+            </div>
+          </div>
+          <div class="field" id="pickupWrap" hidden><label for="pickup">Pick-up address or area <span class="hint">(district, building)</span></label><input type="text" id="pickup" name="pickup"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Host a Sunday</legend>
+          <div class="field">
+            <label for="host">Which Sunday could your family co-host?</label>
+            <select id="host" name="host_sunday">
+              <option value="">Choose a date</option>
+              <option>Sun, 8 Nov</option>
+              <option>Sun, 15 Nov</option>
+              <option>Sun, 22 Nov</option>
+              <option>Sun, 29 Nov</option>
+              <option>Any Sunday</option>
+              <option>We can't host this time</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Consent</legend>
+          <label class="check"><input type="checkbox" id="cFee" name="consent_fee" value="yes"> <span>I agree to the fee of 500,000₮ per child.</span></label>
+          <label class="check"><input type="checkbox" id="cCare" name="consent_participation" value="yes"> <span>I agree to my children taking part in the Sunday programme under the organisers' supervision.</span></label>
+          <label class="check"><input type="checkbox" id="cPhoto" name="consent_video" value="yes"> <span>My children may appear in the private video journal shared only with participating families. <span class="hint">(optional)</span></span></label>
+          <label class="check" id="cRideWrap" hidden><input type="checkbox" id="cRide" name="consent_transport" value="yes"> <span>My children may ride with the programme's drivers.</span></label>
+        </fieldset>
+
+        <p class="error" id="formError" role="alert" hidden></p>
+        <div class="btnrow"><button type="submit" class="cta" id="submitBtn">Register</button></div>
+      </form>
+
+      <div id="done" class="notice ok" hidden>
+        <h3 id="doneTitle">You're registered</h3>
+        <p id="doneText"></p>
+        <pre class="summary" id="summary"></pre>
+        <div class="btnrow">
+          <button type="button" class="cta" id="copyBtn">Copy registration</button>
+          <button type="button" class="ghost" id="editBtn">Edit registration</button>
+          <span id="copyMsg" class="hint" role="status"></span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Organised by Saruul, YPO Family Officer. Questions? Message Saruul directly.</p>
+    <p>Information classification: Internal. For YPO chapter members and their families only. Drafted with the help of generative AI and reviewed by the organiser.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  /* ===== SETTINGS: change these two values if the deadline or fee changes ===== */
+  // Registration deadline. Date.UTC counts months from 0 (January = 0), so 10 = November.
+  // 15:59:59 UTC is 23:59:59 in Ulaanbaatar (UTC+8).
+  var DEADLINE = Date.UTC(2026, 10, 4, 15, 59, 59);
+  // Fee per child in MNT. Also update the visible amounts in the "Cost" section and the consent line.
+  var FEE = 500000;
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- hero staff ---------- */
+  function drawStaff() {
+    var c = $("staff"); if (!c) return;
+    var r = c.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+    c.width = r.width * dpr; c.height = r.height * dpr;
+    var g = c.getContext("2d"); g.scale(dpr, dpr);
+    var w = r.width, h = r.height, top = h * 0.58, gap = 13;
+    g.strokeStyle = "rgba(243,241,234,0.10)"; g.lineWidth = 1;
+    for (var i = 0; i < 5; i++) { g.beginPath(); g.moveTo(0, top + i * gap); g.lineTo(w, top + i * gap); g.stroke(); }
+    var seed = 7; function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+    g.fillStyle = "rgba(201,154,46,0.22)";
+    for (var x = 40; x < w; x += 46 + rnd() * 40) {
+      var y = top + Math.floor(rnd() * 9) * (gap / 2);
+      g.beginPath(); g.ellipse(x, y, 6.5, 4.6, -0.4, 0, Math.PI * 2); g.fill();
+      g.fillRect(x + 5, y - 32, 1.6, 32);
+    }
+    g.fillStyle = "rgba(243,241,234,0.5)";
+    for (var s = 0; s < 70; s++) { g.beginPath(); g.arc(rnd() * w, rnd() * top * 0.9, rnd() * 1.3 + 0.2, 0, Math.PI * 2); g.fill(); }
+  }
+  drawStaff(); window.addEventListener("resize", drawStaff);
+
+  /* ---------- countdown / closed ---------- */
+  var closed = Date.now() > DEADLINE;
+  var daysLeft = Math.ceil((DEADLINE - Date.now()) / 86400000);
+  $("countdown").textContent = closed ? "Registration has closed." :
+    (daysLeft <= 1 ? "Registration closes tonight at 23:59." : daysLeft + " days left to register.");
+  if (closed) { $("regForm").hidden = true; $("closed").hidden = false; $("formIntro").hidden = true; }
+
+  /* ---------- children rows ---------- */
+  var childCount = 0;
+  function addChild(data) {
+    if (childCount >= 4) return;
+    childCount++;
+    var n = childCount;
+    var el = document.createElement("div");
+    el.className = "child"; el.dataset.idx = n;
+    var ages = '<option value="">Age</option>';
+    for (var a = 5; a <= 13; a++) ages += "<option>" + a + "</option>";
+    el.innerHTML =
+      '<div class="child-head"><strong>Child ' + n + '</strong>' + (n > 1 ? '<button type="button" class="linkbtn">Remove</button>' : '') + '</div>' +
+      '<div class="row"><div class="field"><label for="cName' + n + '">Name</label><input type="text" id="cName' + n + '" data-k="name"></div>' +
+      '<div class="field"><label for="cAge' + n + '">Age</label><select id="cAge' + n + '" data-k="age">' + ages + '</select></div></div>' +
+      '<div class="field"><label for="cAllergy' + n + '">Allergies or dietary needs <span class="hint">(leave blank if none)</span></label><input type="text" id="cAllergy' + n + '" data-k="allergies"></div>' +
+      '<div class="field"><label for="cSolo' + n + '">Solo performance <span class="hint">(optional: what would they like to sing or play?)</span></label><input type="text" id="cSolo' + n + '" data-k="solo" placeholder="e.g. piano piece, a song"></div>';
+    $("children").appendChild(el);
+    var rm = el.querySelector(".linkbtn");
+    if (rm) rm.addEventListener("click", function () { el.remove(); renumber(); });
+    if (data) el.querySelectorAll("[data-k]").forEach(function (f) { if (data[f.dataset.k] != null) f.value = data[f.dataset.k]; });
+    $("addChild").hidden = childCount >= 4;
+  }
+  function renumber() {
+    var kids = $("children").querySelectorAll(".child");
+    childCount = kids.length;
+    kids.forEach(function (k, i) { k.querySelector(".child-head strong").textContent = "Child " + (i + 1); });
+    $("addChild").hidden = childCount >= 4;
+  }
+  $("addChild").addEventListener("click", function () { addChild(); });
+  addChild();
+
+  /* ---------- transport toggles ---------- */
+  function syncTransport() {
+    var t = transportValue();
+    $("pickupWrap").hidden = t !== "yes";
+    $("cRideWrap").hidden = t !== "yes";
+  }
+  function transportValue() { var r = document.querySelector('input[name=transport]:checked'); return r ? r.value : ""; }
+  document.querySelectorAll("input[name=transport]").forEach(function (r) { r.addEventListener("change", syncTransport); });
+
+  /* ---------- collect + validate ---------- */
+  function collect() {
+    var kids = [];
+    $("children").querySelectorAll(".child").forEach(function (k) {
+      var o = {}; k.querySelectorAll("[data-k]").forEach(function (f) { o[f.dataset.k] = f.value.trim(); });
+      kids.push(o);
+    });
+    return {
+      parentName: $("parentName").value.trim(),
+      parentPhone: $("parentPhone").value.trim(),
+      children: kids,
+      transport: transportValue(),
+      pickup: $("pickup").value.trim(),
+      host: $("host").value,
+      consentFee: $("cFee").checked,
+      consentCare: $("cCare").checked,
+      consentPhoto: $("cPhoto").checked,
+      consentRide: $("cRide").checked
+    };
+  }
+  function validate(d) {
+    if (!d.parentName) return "Enter your name.";
+    if (!d.parentPhone) return "Enter a phone number so we can reach you on Sundays.";
+    for (var i = 0; i < d.children.length; i++) {
+      if (!d.children[i].name) return "Enter a name for child " + (i + 1) + ".";
+      if (!d.children[i].age) return "Choose an age for child " + (i + 1) + ".";
+    }
+    if (!d.transport) return "Tell us whether you need transport.";
+    if (d.transport === "yes" && !d.pickup) return "Add a pick-up address or area so we can plan the routes.";
+    if (d.transport === "yes" && !d.consentRide) return "Tick the transport consent so your children can ride with our drivers.";
+    if (!d.host) return "Choose a Sunday to co-host, or tell us you can't host this time.";
+    if (!d.consentFee || !d.consentCare) return "Tick the fee and participation consent to register.";
+    return "";
+  }
+  var TRANSPORT = { yes: "Needs a ride", no: "Own transport", carpool: "Can carpool others" };
+  function summaryText(d) {
+    var lines = ["YPO Kids Choir registration", "Parent: " + d.parentName + " (" + d.parentPhone + ")"];
+    d.children.forEach(function (k, i) {
+      lines.push("Child " + (i + 1) + ": " + k.name + ", age " + k.age +
+        (k.allergies ? "; allergies: " + k.allergies : "") + (k.solo ? "; solo: " + k.solo : ""));
+    });
+    lines.push("Transport: " + TRANSPORT[d.transport] + (d.transport === "yes" ? " from " + d.pickup : ""));
+    lines.push("Host Sunday: " + d.host);
+    lines.push("Video journal consent: " + (d.consentPhoto ? "yes" : "no"));
+    lines.push("Fee: " + (FEE * d.children.length).toLocaleString("en-US") + "₮ (" + d.children.length + " × " + FEE.toLocaleString("en-US") + "₮)");
+    return lines.join("\n");
+  }
+
+  /* ---------- confirmation ---------- */
+  var lastData = null;
+  function showDone(d, saved) {
+    $("regForm").hidden = true;
+    $("done").hidden = false;
+    $("summary").textContent = summaryText(d);
+    if (saved) {
+      $("doneTitle").textContent = "You're registered";
+      $("doneText").textContent = "Thank you. Saruul has received your registration and will add you to the parents' group chat before the first Sunday. Copy the details below for your own records.";
+    } else {
+      $("doneTitle").textContent = "One more step: send this to Saruul";
+      $("doneText").textContent = "We couldn't send your registration just now. Copy the details below and send them to Saruul by direct message. You're registered once Saruul confirms.";
+    }
+    $("done").scrollIntoView({ behavior: "smooth", block: "start" });
+    lastData = d;
+  }
+
+  $("regForm").addEventListener("submit", async function (ev) {
+    ev.preventDefault();
+    if (Date.now() > DEADLINE) { $("formError").textContent = "Registration closed on 4 November."; $("formError").hidden = false; return; }
+    var d = collect(); var err = validate(d);
+    if (err) { $("formError").textContent = err; $("formError").hidden = false; return; }
+    $("formError").hidden = true;
+    $("submitBtn").disabled = true; $("submitBtn").textContent = "Registering…";
+    $("hChildren").value = d.children.map(function (k, i) {
+      return (i + 1) + ". " + k.name + ", age " + k.age + (k.allergies ? "; allergies: " + k.allergies : "") + (k.solo ? "; solo: " + k.solo : "");
+    }).join("\n");
+    $("hCount").value = String(d.children.length);
+    $("hFee").value = (FEE * d.children.length).toLocaleString("en-US") + " MNT";
+    $("hSummary").value = summaryText(d);
+    var saved = false;
+    try {
+      var res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(new FormData($("regForm"))).toString()
+      });
+      saved = res.ok;
+    } catch (e) { saved = false; }
+    $("submitBtn").disabled = false; $("submitBtn").textContent = "Register";
+    showDone(d, saved);
+  });
+
+  $("editBtn").addEventListener("click", function () {
+    var d = lastData; if (!d) return;
+    $("done").hidden = true; $("regForm").hidden = Date.now() > DEADLINE;
+    $("parentName").value = d.parentName; $("parentPhone").value = d.parentPhone;
+    $("children").innerHTML = ""; childCount = 0;
+    (d.children.length ? d.children : [{}]).forEach(function (k) { addChild(k); });
+    renumber();
+    var r = document.querySelector('input[name=transport][value="' + d.transport + '"]'); if (r) r.checked = true;
+    $("pickup").value = d.pickup || ""; $("host").value = d.host || "";
+    $("cFee").checked = !!d.consentFee; $("cCare").checked = !!d.consentCare; $("cPhoto").checked = !!d.consentPhoto; $("cRide").checked = !!d.consentRide;
+    syncTransport();
+    $("register").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  $("copyBtn").addEventListener("click", function () {
+    var text = $("summary").textContent;
+    var done = function () { $("copyMsg").textContent = "Copied."; };
+    var fallback = function () {
+      var range = document.createRange(); range.selectNodeContents($("summary"));
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      $("copyMsg").textContent = "Selected. Press Ctrl+C or ⌘C to copy.";
+    };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  });
+
+})();
+</script>
+</body>
+</html>
