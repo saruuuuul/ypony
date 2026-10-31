@@ -1,6 +1,6 @@
 # YPO Kids Choir 2026
 
-Pitch page for the YPO Family New Year 2026 kids choir: four Sundays at Edupark in November (9:00–11:30 choir training with D. Altanzaya, then lunch and activities) and a performance at Highland Park on Friday, 4 December. Registration is a form on the page itself and closes on 4 November at 23:59 (Ulaanbaatar time).
+Pitch page for the YPO Family New Year 2026 kids choir: four Sundays at Edupark in November (9:00–11:30 choir training with D. Altanzaya, then lunch and activities) and a performance at Highland Park on Friday, 4 December. Registration is a Google Form and closes on 4 November at 23:59 (Ulaanbaatar time).
 
 ## Files
 
@@ -8,7 +8,7 @@ Pitch page for the YPO Family New Year 2026 kids choir: four Sundays at Edupark 
 | --- | --- |
 | `index.html` | The whole page: content (HTML), design (CSS in `<style>`) and a small script (`<script>`) |
 | `assets/altanzaya.jpg` | The instructor's photo |
-| `tools/registration-backend.gs` | Google Apps Script that receives each registration from the page and saves it in a private Google Sheet |
+| `tools/create-registration-form.gs` | Google Apps Script that builds the registration form and its response sheet |
 | `.nojekyll` | Tells GitHub Pages to serve the files as they are |
 
 ## How the page is built
@@ -17,35 +17,24 @@ Pitch page for the YPO Family New Year 2026 kids choir: four Sundays at Edupark 
 
 1. **`<style>`**: the design. The `:root` block at the top holds colours and fonts as named tokens (`--gold`, `--night` and so on). Change one there and it changes everywhere. Type is set large so the page reads on a small display.
 2. **`<body>`**: the content, one `<section>` per topic (Why, Programme, Instructor, Concert, Logistics, Cost, Registration). Edit the text between the tags.
-3. **`<script>`**: draws the music staff in the header, shows the countdown, draws the QR code, and runs the registration form (adding children, checking answers, sending them to `SUBMIT_URL`).
+3. **`<script>`**: draws the music staff in the header, shows the countdown, and turns the registration button and QR code on once `FORM_URL` is set.
 
 ## Common edits
 
 All the settings are in the `SETTINGS` block at the top of the `<script>`:
 
-- **`SUBMIT_URL`**: the backend's web app link (ends in `/exec`). Until it is set, the form explains that registration isn't switched on yet.
-- **`PAGE_URL`**: this page's public address. The QR code points here.
-- **`DEADLINE`**: the moment registration closes. After it, the form is replaced by a "closed" message.
-- **`FEE`** and **`MAX_CHILDREN`**: used for the running total and the "Add another child" button.
+- **`FORM_URL`**: paste the Google Form link between the quotes. The button and QR code update automatically.
+- **`DEADLINE`**: the moment registration closes. After it, the button is replaced by a "closed" message.
 
 Other edits: rehearsal dates are in `<ol class="timeline">`, the Sunday times in `<div class="day">`, and the fee in the Cost section.
 
 After an edit, commit and push to `main`. GitHub Pages republishes in about a minute.
 
-## Registration
+## Registration form
 
-The form is part of `index.html`, but a website on GitHub Pages cannot store anything. So when a parent presses **Send registration**, the page sends the answers to a small Google Apps Script (`tools/registration-backend.gs`). It checks them again, refuses anything after the deadline, adds one row per child to a private Google Sheet, and emails you a short summary.
+Run `tools/create-registration-form.gs` once (instructions at the top of the file). It creates the form, a Google Sheet for the answers, and a timer that closes the form at the deadline. To get an email for each new registration, turn on notifications in the form's **Responses** tab.
 
-```
-parent's phone ──► index.html form ──► Apps Script web app ──► private Google Sheet
-                   (GitHub Pages)       (your Google account)   (+ email to you)
-```
-
-Set-up steps are at the top of `tools/registration-backend.gs` (about 5 minutes). Then paste the `/exec` link into `SUBMIT_URL`.
-
-**Changing a question** means changing both files: the HTML field and `collect()` in `index.html`, and `findProblem()`, `save()` and `HEADERS` in the backend. After changing the backend, publish a new version (Deploy > Manage deployments > edit > New version), or the live web app keeps running the old code.
-
-The repo is public. Registrations stay in your Google Sheet, so never commit them or any contact list here.
+The repo is public. Registrations stay in Google, so never commit them or any contact list here.
 
 ---
 
