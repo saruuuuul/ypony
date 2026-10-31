@@ -18,6 +18,22 @@
 const DEADLINE = new Date('2026-11-04T23:59:59+08:00');
 
 function createRegistrationForm() {
+  // Safety check: if a form was already made, show its links instead of making a second one.
+  // (A second run would create a second form and sheet, and the first form would never close.)
+  const props = PropertiesService.getScriptProperties();
+  const existingId = props.getProperty('FORM_ID');
+  if (existingId) {
+    try {
+      const existing = FormApp.openById(existingId);
+      Logger.log('A form already exists, so nothing new was created.');
+      Logger.log('Form link for members (paste into FORM_URL): ' + existing.getPublishedUrl());
+      Logger.log('Edit the form: ' + existing.getEditUrl());
+      return;
+    } catch (e) {
+      // The old form was deleted, so carry on and build a fresh one.
+    }
+  }
+
   const form = FormApp.create('YPO Kids Choir 2026 — Registration');
   form.setDescription(
     'Choir programme for YPO members\' children aged 5–13.\n' +
@@ -62,6 +78,12 @@ function createRegistrationForm() {
   form.addTextItem()
     .setTitle('Pick-up address, if you need a ride')
     .setHelpText('District and building');
+  // The page promises children go home only with a parent or an approved adult; this is the list.
+  form.addParagraphTextItem()
+    .setTitle('Who else may collect your children?')
+    .setHelpText('Name and phone number of anyone besides you, for example your driver or nanny. ' +
+                 'We hand children only to a parent, the programme drivers, or someone listed here. ' +
+                 'Leave blank if only parents.');
 
   // --- Host a Sunday ---
   form.addListItem()
@@ -86,7 +108,7 @@ function createRegistrationForm() {
   form.setDestination(FormApp.DestinationType.SPREADSHEET, sheet.getId());
 
   // --- Close the form automatically at the deadline ---
-  PropertiesService.getScriptProperties().setProperty('FORM_ID', form.getId());
+  props.setProperty('FORM_ID', form.getId());
   ScriptApp.newTrigger('closeRegistration').timeBased().at(DEADLINE).create();
 
   Logger.log('Form link for members (paste into FORM_URL): ' + form.getPublishedUrl());
