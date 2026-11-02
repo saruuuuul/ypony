@@ -22,7 +22,8 @@ English pitch page for YPO members (`index.html`, served by GitHub Pages from `m
 
 ## Open items
 - [x] Enable GitHub Pages (Settings → Pages → main, root). Live since 2 Nov.
-- [ ] Deploy `tools/registration-backend.gs` as a web app (steps at the top of the file), add the `DRIVERS` script property, set `SUBMIT_URL` in the SETTINGS block of `index.html`, send one test registration and delete it from the sheet.
+- [x] Deploy `tools/registration-backend.gs` as a web app, add the `DRIVERS` script property, set `SUBMIT_URL` in `index.html`. Saruul tested it end to end on 2 Nov: working.
+- [ ] Delete the test registration rows from the sheet before places are confirmed on 5 Nov.
 - [ ] Confirm the Sunday end time and add it to the page.
 - [ ] Confirm the instructor is fine with her photo on a public repo/site.
 - [ ] Instructor's answers on songs, assistants, solo time, equipment → update the page.
