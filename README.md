@@ -43,7 +43,12 @@ parent's phone ──► index.html form ──► Apps Script web app ──►
 
 Set-up steps are at the top of `tools/registration-backend.gs` (about 5 minutes). Then paste the `/exec` link into `SUBMIT_URL`.
 
-**Drivers' contacts** are stored in the script's **Script Properties** as `DRIVERS`, not in this repo. The backend sends them only to families who ask for a ride, and the page shows them on the thank-you screen. To change them, edit the property; you don't need to publish a new version.
+**Contacts** are stored in the script's **Script Properties**, not in this repo:
+
+- `DRIVERS`: sent only to families who ask for a ride. Adding a third driver means editing this property.
+- `CHAMPION`: the event champion's contact, sent to every family so they can send solo videos.
+
+The page shows them on the thank-you screen. To change them, edit the property; you don't need to publish a new version.
 
 **Changing a question** means changing both files: the HTML field and `collect()` in `index.html`, and `findProblem()`, `save()` and `HEADERS` in the backend. After changing the backend, publish a new version (Deploy > Manage deployments > edit > New version), or the live web app keeps running the old code.
 
