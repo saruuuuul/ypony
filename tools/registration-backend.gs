@@ -12,11 +12,13 @@
  *      Google asks for permission: choose your account and click Allow.
  *      (If you see "Google hasn't verified this app": Advanced, then "Go to ...". It is your own script.)
  *      The Execution log at the bottom shows the link to the new Registrations sheet.
- *   4. Add the drivers' names and numbers. They are kept out of this file on purpose, because the repo is public.
+ *   4. Add the contacts parents need. They are kept out of this file on purpose, because the repo is public.
  *      Project Settings (gear icon on the left) > Script Properties > Add script property:
- *        Property:  DRIVERS
- *        Value:     names and phone numbers, as parents should see them
- *      Click "Save script properties". Families who ask for a ride see this on their thank-you screen.
+ *        Property:  DRIVERS     Value: drivers' names and phone numbers, as parents should see them
+ *                               (shown only to families who ask for a ride; add a third driver here any time)
+ *        Property:  CHAMPION    Value: the event champion's name and contact, for solo videos
+ *                               (shown to every family after they register)
+ *      Click "Save script properties". Changing a property takes effect at once, with no new deployment.
  *   5. Click Deploy > New deployment. Click the gear next to "Select type" and choose "Web app".
  *        Execute as:      Me
  *        Who has access:  Anyone   (so members can register without a Google login)
@@ -87,11 +89,13 @@ function doPost(e) {
     const ref = save(data);
     if (NOTIFY_ME) notify(data, ref);
 
-    // Only families who asked for a ride get the drivers' contacts (set in Script Properties, step 4).
-    const drivers = data.ride === 'Yes, please'
-      ? (PropertiesService.getScriptProperties().getProperty('DRIVERS') || '')
-      : '';
-    return reply({ ok: true, ref: ref, drivers: drivers });
+    // Contacts come from Script Properties (step 4), never from this public file.
+    const props = PropertiesService.getScriptProperties();
+    // Only families who asked for a ride get the drivers' contacts.
+    const drivers = data.ride === 'Yes, please' ? (props.getProperty('DRIVERS') || '') : '';
+    // Every family gets the event champion's contact, for sending solo videos.
+    const champion = props.getProperty('CHAMPION') || '';
+    return reply({ ok: true, ref: ref, drivers: drivers, champion: champion });
   } catch (err) {
     console.error(err);
     return reply({ ok: false, error: 'Something went wrong on our side.' });
@@ -154,12 +158,15 @@ function save(d) {
 function notify(d, ref) {
   try {
     const kids = d.children.map(function (c) { return clean(c.name) + ' (' + Number(c.age) + ')'; }).join(', ');
+    const solos = d.children.filter(function (c) { return filled(c.solo); })
+      .map(function (c) { return clean(c.name) + ': ' + clean(c.solo); }).join('; ') || 'none';
     MailApp.sendEmail(
       Session.getEffectiveUser().getEmail(),
       'Kids Choir registration: ' + clean(d.parent.name),
       'Ref ' + ref + '\n' +
       'Parent: ' + clean(d.parent.name) + ', ' + clean(d.parent.phone) + '\n' +
       'Children: ' + kids + '\n' +
+      'Solos: ' + solos + '\n' +
       'Ride: ' + d.ride + '\n' +
       'Co-host: ' + d.cohost
     );
