@@ -31,7 +31,7 @@
  * Version: "New version" > Deploy. The URL stays the same.
  */
 
-const DEADLINE = new Date('2026-11-04T23:59:59+08:00'); // 23:59 on 4 November, Ulaanbaatar time
+const DEADLINE = new Date('2026-11-05T23:59:59+08:00'); // 23:59 on 5 November, Ulaanbaatar time (extended by one day)
 const NOTIFY_ME = true;   // true = email me a short summary of each new registration
 const MAX_CHILDREN = 4;
 
@@ -81,7 +81,7 @@ function doPost(e) {
     // Bots fill in every box, so if it has text we quietly ignore the message.
     if (data.website) return reply({ ok: true });
 
-    if (new Date() > DEADLINE) return reply({ ok: false, error: 'Registration closed on 4 November.' });
+    if (new Date() > DEADLINE) return reply({ ok: false, error: 'Registration closed on 5 November.' });
 
     const problem = findProblem(data);
     if (problem) return reply({ ok: false, error: problem });

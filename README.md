@@ -1,6 +1,6 @@
 # YPO Kids Choir 2026
 
-Pitch page for the YPO Family New Year 2026 kids choir: four Sundays at Edupark in November (9:00–11:30 choir training with D. Altanzaya, then lunch and activities) and a performance at Highland Park on Friday, 4 December. Registration is a form on the page itself and closes on 4 November at 23:59 (Ulaanbaatar time).
+Pitch page for the YPO Family New Year 2026 kids choir: four Sundays at Edupark in November (9:00–11:30 choir training with D. Altanzaya, then lunch and activities) and a performance at Highland Park on Friday, 4 December. Registration is a form on the page itself and closes on 5 November at 23:59 (Ulaanbaatar time), extended by one day from 4 November.
 
 ## Files
 
