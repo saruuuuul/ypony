@@ -217,7 +217,7 @@ footer p + p { margin-top: 6px; }
       <div><strong>Fri, 4 December</strong>Performance at Highland Park</div>
       <div><strong>Ages 5–13</strong>About 20 children</div>
     </div>
-    <a class="cta" href="#register">Register by 4 November</a>
+    <a class="cta" href="#register">Register by 5 November</a>
     <p class="countdown" id="countdown"></p>
   </div>
 </header>
@@ -357,13 +357,13 @@ footer p + p { margin-top: 6px; }
     <div class="wrap">
       <div class="mv-head">
         <p class="mv-label">Registration</p>
-        <h2>Register by 4 November</h2>
+        <h2>Register by 5 November</h2>
       </div>
       <div class="reg-grid">
         <div style="display:grid;gap:26px">
           <ul class="steps">
-            <li><b>Wed, 4 Nov</b>Registration closes, 23:59</li>
-            <li><b>Thu, 5 Nov</b>Places confirmed</li>
+            <li><b>Thu, 5 Nov</b>Registration closes, 23:59 (extended by a day)</li>
+            <li><b>Fri, 6 Nov</b>Places confirmed</li>
             <li><b>Sun, 8 Nov</b>First rehearsal</li>
           </ul>
           <p class="prose">One form per family, right here on this page. It takes about three minutes.</p>
@@ -499,7 +499,7 @@ footer p + p { margin-top: 6px; }
   var PAGE_URL = "https://saruuuuul.github.io/ypony/";
   // Registration deadline. Date.UTC counts months from 0 (January = 0), so 10 = November.
   // 15:59:59 UTC is 23:59:59 in Ulaanbaatar (UTC+8).
-  var DEADLINE = Date.UTC(2026, 10, 4, 15, 59, 59);
+  var DEADLINE = Date.UTC(2026, 10, 5, 15, 59, 59);
   var FEE = 500000;       // per child, in tögrög
   var MAX_CHILDREN = 4;   // keep the same as MAX_CHILDREN in the backend script
 
@@ -625,7 +625,7 @@ footer p + p { margin-top: 6px; }
   function showThanks(data, ref, drivers, champion) {
     var names = data.children.map(function (c) { return c.name; });
     var who = names.length > 1 ? names.slice(0, -1).join(", ") + " and " + names[names.length - 1] : names[0];
-    $("doneText").textContent = "We have your registration for " + who + ". On 5 November we will confirm your place, " +
+    $("doneText").textContent = "We have your registration for " + who + ". On 6 November we will confirm your place, " +
       "send payment details and add you to the parents' group chat." + (ref ? " Your reference: " + ref + "." : "");
 
     var hasSolo = data.children.some(function (c) { return c.solo; });
